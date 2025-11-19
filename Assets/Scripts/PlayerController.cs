@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour
     public LayerMask boomBarrelLayer;
 
     // ÒÆ¶¯²ÎÊý
-    private float moveDistance = 64f;
+    private float moveDistance = 1f;
 
     void Start()
     {
@@ -153,16 +153,16 @@ public class PlayerController : MonoBehaviour
         switch (facing)
         {
             case FacingDirection.Left:
-                transform.rotation = Quaternion.Euler(0, 0, 180);
+                transform.rotation = Quaternion.Euler(0, 180, 0);
                 break;
             case FacingDirection.Right:
                 transform.rotation = Quaternion.Euler(0, 0, 0);
                 break;
             case FacingDirection.Down:
-                transform.rotation = Quaternion.Euler(0, 0, 270);
+                transform.rotation = Quaternion.Euler(0, 270, 0);
                 break;
             case FacingDirection.Up:
-                transform.rotation = Quaternion.Euler(0, 0, 90);
+                transform.rotation = Quaternion.Euler(0, 90, 0);
                 break;
         }
     }
