@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public enum FacingDirection { LEFT, RIGHT, DOWN, UP }
+public enum FacingDirection { Left, Right, Down, Up }
 
 public class PlayerController : MonoBehaviour
 {
@@ -20,9 +20,9 @@ public class PlayerController : MonoBehaviour
     private bool downPressed = false;
 
     // 玩家状态
-    public FacingDirection facing = FacingDirection.RIGHT;
+    public FacingDirection facing = FacingDirection.Right;
     private bool conveyed = false;
-    private FacingDirection conveyerDir = FacingDirection.RIGHT;
+    private FacingDirection conveyerDir = FacingDirection.Right;
 
     // 引用
     private SpriteRenderer spriteRenderer;
@@ -114,16 +114,16 @@ public class PlayerController : MonoBehaviour
             conveyed = false;
             switch (conveyerDir)
             {
-                case FacingDirection.RIGHT:
+                case FacingDirection.Right:
                     rightPressed = true;
                     break;
-                case FacingDirection.LEFT:
+                case FacingDirection.Left:
                     leftPressed = true;
                     break;
-                case FacingDirection.DOWN:
+                case FacingDirection.Down:
                     downPressed = true;
                     break;
-                case FacingDirection.UP:
+                case FacingDirection.Up:
                     upPressed = true;
                     break;
             }
@@ -134,34 +134,34 @@ public class PlayerController : MonoBehaviour
     {
         if (leftPressed)
         {
-            facing = FacingDirection.LEFT;
+            facing = FacingDirection.Left;
         }
         if (rightPressed)
         {
-            facing = FacingDirection.RIGHT;
+            facing = FacingDirection.Right;
         }
         if (downPressed)
         {
-            facing = FacingDirection.DOWN;
+            facing = FacingDirection.Down;
         }
         if (upPressed)
         {
-            facing = FacingDirection.UP;
+            facing = FacingDirection.Up;
         }
 
         // 更新角色朝向（通过旋转或翻转sprite）
         switch (facing)
         {
-            case FacingDirection.LEFT:
+            case FacingDirection.Left:
                 transform.rotation = Quaternion.Euler(0, 0, 180);
                 break;
-            case FacingDirection.RIGHT:
+            case FacingDirection.Right:
                 transform.rotation = Quaternion.Euler(0, 0, 0);
                 break;
-            case FacingDirection.DOWN:
+            case FacingDirection.Down:
                 transform.rotation = Quaternion.Euler(0, 0, 270);
                 break;
-            case FacingDirection.UP:
+            case FacingDirection.Up:
                 transform.rotation = Quaternion.Euler(0, 0, 90);
                 break;
         }
@@ -172,46 +172,37 @@ public class PlayerController : MonoBehaviour
         float hMovement = (-(leftPressed ? 1 : 0) + (rightPressed ? 1 : 0)) * moveDistance;
         float vMovement = (-(upPressed ? 1 : 0) + (downPressed ? 1 : 0)) * moveDistance;
 
-        Vector2 targetPosition = new Vector2(transform.position.x + hMovement, transform.position.y + vMovement);
+        Vector3 targetPosition = transform.position + new Vector3(hMovement, 0, vMovement);
 
         // 检查墙壁碰撞
-        if (Physics2D.OverlapCircle(targetPosition, 0.1f, wallLayer))
+        if (Physics.OverlapBox(targetPosition, Vector3.one * 0.45f, Quaternion.identity, wallLayer).Length > 0)
         {
-            hMovement = 0;
-            vMovement = 0;
+            return; // 有墙壁，不移动
         }
 
-        // 检查木桶碰撞
-        Collider2D barrelCollider = Physics2D.OverlapCircle(targetPosition, 0.1f, barrelLayer);
-        if (barrelCollider != null)
+        // 检查并推动箱子
+        Collider[] collidersAtTarget = Physics.OverlapBox(targetPosition, Vector3.one * 0.45f);
+        foreach (Collider collider in collidersAtTarget)
         {
-            Barrel barrel = barrelCollider.GetComponent<Barrel>();
-            if (barrel != null)
+            IPushable pushable = collider.GetComponent<IPushable>();
+            if (pushable != null)
             {
-                bool didPush = barrel.Push(hMovement, vMovement);
+                bool didPush = pushable.Push(new Vector3(hMovement, 0, vMovement));
                 if (!didPush)
                 {
-                    hMovement = 0;
-                    vMovement = 0;
+                    return; // 箱子推不动，玩家也不移动
                 }
             }
         }
 
-        // 检查爆炸桶碰撞
-        Collider2D boomBarrelCollider = Physics2D.OverlapCircle(targetPosition, 0.1f, boomBarrelLayer);
-        if (boomBarrelCollider != null)
-        {
-            BoomBarrel boomBarrel = boomBarrelCollider.GetComponent<BoomBarrel>();
-            if (boomBarrel != null)
-            {
-                boomBarrel.Push(hMovement, vMovement, true);
-            }
-        }
-
         // 应用移动
-        transform.position = new Vector2(transform.position.x + hMovement, transform.position.y + vMovement);
+        transform.position = targetPosition;
     }
-
+    public void Convey(FacingDirection dir)
+    {
+        conveyed = true;
+        conveyerDir = dir;
+    }
     void HandleGameOver()
     {
         if (Global.gameOver && GameObject.FindObjectOfType<Explosion>() != null)
