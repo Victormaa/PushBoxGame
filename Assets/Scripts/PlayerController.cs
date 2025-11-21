@@ -159,18 +159,24 @@ public class PlayerController : MonoBehaviour
                 transform.rotation = Quaternion.Euler(0, 0, 0);
                 break;
             case FacingDirection.Down:
-                transform.rotation = Quaternion.Euler(0, 270, 0);
+                transform.rotation = Quaternion.Euler(0, 90, 0);
                 break;
             case FacingDirection.Up:
-                transform.rotation = Quaternion.Euler(0, 90, 0);
+                transform.rotation = Quaternion.Euler(0, 270, 0);
                 break;
         }
     }
 
     void HandleMovement()
     {
+        
         float hMovement = (-(leftPressed ? 1 : 0) + (rightPressed ? 1 : 0)) * moveDistance;
-        float vMovement = (-(upPressed ? 1 : 0) + (downPressed ? 1 : 0)) * moveDistance;
+        float vMovement = ((upPressed ? 1 : 0) + -(downPressed ? 1 : 0)) * moveDistance;
+
+        if(leftPressed || rightPressed)
+        {
+            Debug.Log(hMovement);
+        }
 
         Vector3 targetPosition = transform.position + new Vector3(hMovement, 0, vMovement);
 

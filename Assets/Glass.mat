@@ -42,18 +42,18 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _DisortStrength: 2
+    - _DisortStrength: 3.2
     - _DistortionOnTexture: 0.827
-    - _Metallic: 0.041
-    - _NormalStrength: 8.65
+    - _Metallic: 0.296
+    - _NormalStrength: 4.3
     - _QueueControl: 0
     - _QueueOffset: 0
-    - _ReflectionStrength: 0.51
-    - _Smoothness: 0.926
+    - _ReflectionStrength: 0
+    - _Smoothness: 0.056
     - _Tiling: 498
     m_Colors:
     - _Offset: {r: 0, g: 0, b: 0, a: 0}
-    - _TintColor: {r: 0, g: 1, b: 0.8042793, a: 1}
+    - _TintColor: {r: 0.5943395, g: 1, b: 0.9204588, a: 1}
   m_BuildTextureStacks: []
   m_AllowLocking: 1
 --- !u!114 &2411789499639013818
