@@ -10,32 +10,41 @@ public class BoomBarrel : MonoBehaviour, IPushable
     public LayerMask conveyorMask;
 
     [Header("Fuse (seconds)")]
+    public int canPushCount = 5;
     public float fuseTime = 5f;
     private bool exploded = false;
     public ParticleSystem explodeVfx;
+
+    public AudioClip pushSound;
+    public AudioSource audio;
+
+    private void Start()
+    {
+        audio = GetComponent<AudioSource>();
+    }
 
     void Update()
     {
         if (exploded || GameState.I == null) return;
 
-        if (fuseTime > 0f) fuseTime -= Time.deltaTime;
+        //if (fuseTime > 0f) fuseTime -= Time.deltaTime;
 
         bool inHole = OverlapsMask(transform.position, holeMask);
         bool onConveyor = OverlapsMask(transform.position, conveyorMask);
 
-        if (fuseTime > 0f && inHole)
+        if (canPushCount > 0f && inHole)
         {
             GameState.I.GameOverOnce("Too early!");
             return;
         }
 
-        if (fuseTime <= 0f && inHole)
+        if (canPushCount <= 0f && inHole)
         {
             GameState.I.WinOnce();
             return;
         }
 
-        if (fuseTime <= 0f && !inHole && !onConveyor)
+        if (canPushCount <= 0f && !inHole && !onConveyor)
         {
             Explode();
         }
@@ -49,6 +58,13 @@ public class BoomBarrel : MonoBehaviour, IPushable
             return false;
 
         transform.position = target;
+
+        if (!conveyorPush)
+        {
+            canPushCount -= 1;
+            audio.PlayOneShot(pushSound);
+        }
+
         return true;
     }
 
@@ -57,7 +73,13 @@ public class BoomBarrel : MonoBehaviour, IPushable
         if (exploded) return;
         exploded = true;
 
-        if (explodeVfx) Instantiate(explodeVfx, transform.position, Quaternion.identity);
+        if (explodeVfx) 
+        { 
+            var temp = Instantiate(explodeVfx, transform.position, Quaternion.identity);
+            temp.Play();
+            temp.transform.GetComponent<AudioSource>().Play();
+        }
+
         Destroy(gameObject);
     }
 

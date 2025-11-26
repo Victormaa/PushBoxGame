@@ -12,6 +12,7 @@ public class ConveyorBelt : MonoBehaviour
     public LayerMask barrelMask;
     public LayerMask boomBarrelMask;
     public LayerMask playerMask;
+    public LayerMask obstacleMask;
 
     public Vector3 checkExtents = new Vector3(0.45f, 0.5f, 0.45f);
 
@@ -43,38 +44,66 @@ public class ConveyorBelt : MonoBehaviour
         var barrels = Physics.OverlapBox(center, checkExtents, Quaternion.identity, barrelMask, QueryTriggerInteraction.Ignore);
         foreach (var c in barrels)
         {
-            if (c.TryGetComponent<IPushable>(out var p))
-                p.Push(delta, true);
-            else if (c.TryGetComponent<Barrel>(out var b))
-                b.Push(delta, true);
+            // check the direction if has a player or obstacle
+            Vector3 targetPosition = c.transform.position + delta;
+            if (CanBeltConvey(targetPosition))
+            {
+                if (c.TryGetComponent<IPushable>(out var p))
+                    p.Push(delta, true);
+                else if (c.TryGetComponent<Barrel>(out var b))
+                    b.Push(delta, true);
+            }
         }
 
         var booms = Physics.OverlapBox(center, checkExtents, Quaternion.identity, boomBarrelMask, QueryTriggerInteraction.Ignore);
         foreach (var c in booms)
         {
-            if (c.TryGetComponent<IPushable>(out var p))
-                p.Push(delta, true);
-            else if (c.TryGetComponent<BoomBarrel>(out var bb))
-                bb.Push(delta, true);
+            // check the direction if has a player or obstacle
+            Vector3 targetPosition = c.transform.position + delta;
+            // 如果没有障碍物和玩家，才推动爆炸桶
+            if (CanBeltConvey(targetPosition))
+            {
+                if (c.TryGetComponent<IPushable>(out var p))
+                    p.Push(delta, true);
+                else if (c.TryGetComponent<BoomBarrel>(out var bb))
+                    bb.Push(delta, true);
+            }
         }
 
         var players = Physics.OverlapBox(center, checkExtents, Quaternion.identity, playerMask, QueryTriggerInteraction.Ignore);
         foreach (var c in players)
         {
-            var pc = c.GetComponent<PlayerController>();
-            if (pc != null)
+            // check the direction if has a player or obstacle
+            Vector3 targetPosition = c.transform.position + delta;
+            if (CanBeltConvey(targetPosition))
             {
-                pc.Convey(direction switch
+                var pc = c.GetComponent<PlayerController>();
+                if (pc != null)
                 {
-                    BeltDir.Right => FacingDirection.Right,
-                    BeltDir.Left => FacingDirection.Left,
-                    BeltDir.Up => FacingDirection.Up,
-                    _ => FacingDirection.Down
-                });
+                    pc.Convey(direction switch
+                    {
+                        BeltDir.Right => FacingDirection.Right,
+                        BeltDir.Left => FacingDirection.Left,
+                        BeltDir.Up => FacingDirection.Up,
+                        _ => FacingDirection.Down
+                    });
+                }
             }
+                
         }
     }
+    bool CanBeltConvey(Vector3 targetPosition)
+    {
+        // 检查目标位置是否有障碍物
+        bool hasObstacle = Physics.OverlapBox(targetPosition, checkExtents, Quaternion.identity, obstacleMask, QueryTriggerInteraction.Ignore).Length > 0;
 
+        // 检查目标位置是否有玩家
+        bool hasPlayer = Physics.OverlapBox(targetPosition, checkExtents, Quaternion.identity, playerMask, QueryTriggerInteraction.Ignore).Length > 0;
+
+        bool hasBarrel = Physics.OverlapBox(targetPosition, checkExtents, Quaternion.identity, barrelMask, QueryTriggerInteraction.Ignore).Length > 0;
+
+        return !hasObstacle && !hasPlayer && !hasBarrel;
+    }
     Vector3 DirToDelta(BeltDir d)
     {
         return d switch
