@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider))]
@@ -10,6 +11,7 @@ public class BoomBarrel : MonoBehaviour, IPushable
     public LayerMask conveyorMask;
 
     [Header("Fuse (seconds)")]
+    public TMP_Text stepCount;
     public int canPushCount = 5;
     public float fuseTime = 5f;
     private bool exploded = false;
@@ -21,6 +23,7 @@ public class BoomBarrel : MonoBehaviour, IPushable
     private void Start()
     {
         audio = GetComponent<AudioSource>();
+        stepCount.text = canPushCount.ToString();
     }
 
     void Update()
@@ -62,6 +65,7 @@ public class BoomBarrel : MonoBehaviour, IPushable
         if (!conveyorPush)
         {
             canPushCount -= 1;
+            stepCount.text = canPushCount.ToString(); 
             audio.PlayOneShot(pushSound);
         }
 
