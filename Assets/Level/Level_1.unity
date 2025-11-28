@@ -70579,6 +70579,7 @@ GameObject:
   - component: {fileID: 1506874492}
   - component: {fileID: 1506874491}
   - component: {fileID: 1506874490}
+  - component: {fileID: 1506874494}
   - component: {fileID: 1506874493}
   m_Layer: 5
   m_Name: Canvas
@@ -70682,6 +70683,54 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 384e88b7ede7c1648ac332b1a5f4fa74, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1506874494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1506874488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a8e6a49d946901b4fa7443dec1c6b1ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  floatCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    - serializedVersion: 3
+      time: 0.45748925
+      value: 0.98009765
+      inSlope: 1.4960839
+      outSlope: 1.4960839
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1.0001848
+      value: 0.00039192475
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 0
+    m_RotationOrder: 4
+  cycleDuration: 2
+  minHeight: -0.05
+  maxHeight: 0.05
 --- !u!1001 &1507384036
 PrefabInstance:
   m_ObjectHideFlags: 0
