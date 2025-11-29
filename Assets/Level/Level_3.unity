@@ -9759,6 +9759,7 @@ MonoBehaviour:
   conveyorMask:
     serializedVersion: 2
     m_Bits: 0
+  stepCount: {fileID: 0}
   canPushCount: 5
   fuseTime: 25
   explodeVfx: {fileID: 0}
@@ -32305,6 +32306,18 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 128.8
       objectReference: {fileID: 0}
+    - target: {fileID: 2373768294115230026, guid: 8012836a76eb98e42a2d007d0bdd828c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 124.39
+      objectReference: {fileID: 0}
+    - target: {fileID: 2373768294115230026, guid: 8012836a76eb98e42a2d007d0bdd828c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 116.36
+      objectReference: {fileID: 0}
+    - target: {fileID: 2373768294115230029, guid: 8012836a76eb98e42a2d007d0bdd828c, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4045676103559368733, guid: 8012836a76eb98e42a2d007d0bdd828c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 901.5
@@ -32345,6 +32358,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5658495592669799169, guid: 8012836a76eb98e42a2d007d0bdd828c, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6049404559433393451, guid: 8012836a76eb98e42a2d007d0bdd828c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 123.8
@@ -32357,9 +32374,29 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 119
       objectReference: {fileID: 0}
+    - target: {fileID: 6589253151713655076, guid: 8012836a76eb98e42a2d007d0bdd828c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 88.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6589253151713655076, guid: 8012836a76eb98e42a2d007d0bdd828c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 119.7
+      objectReference: {fileID: 0}
     - target: {fileID: 7061755336067198634, guid: 8012836a76eb98e42a2d007d0bdd828c, type: 3}
       propertyPath: m_Name
       value: Lava_Island_03
+      objectReference: {fileID: 0}
+    - target: {fileID: 7762083894810954688, guid: 8012836a76eb98e42a2d007d0bdd828c, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7901176694508480839, guid: 8012836a76eb98e42a2d007d0bdd828c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 64.76
+      objectReference: {fileID: 0}
+    - target: {fileID: 7901176694508480839, guid: 8012836a76eb98e42a2d007d0bdd828c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 127.54
       objectReference: {fileID: 0}
     - target: {fileID: 8253122534294530038, guid: 8012836a76eb98e42a2d007d0bdd828c, type: 3}
       propertyPath: m_LocalPosition.x
@@ -32368,6 +32405,22 @@ PrefabInstance:
     - target: {fileID: 8253122534294530038, guid: 8012836a76eb98e42a2d007d0bdd828c, type: 3}
       propertyPath: m_LocalPosition.z
       value: 119.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8669472443099018082, guid: 8012836a76eb98e42a2d007d0bdd828c, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9101439749906584037, guid: 8012836a76eb98e42a2d007d0bdd828c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 124.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 9101439749906584037, guid: 8012836a76eb98e42a2d007d0bdd828c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 27.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 9101439749906584037, guid: 8012836a76eb98e42a2d007d0bdd828c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 117.59
       objectReference: {fileID: 0}
     - target: {fileID: 9200573829962465962, guid: 8012836a76eb98e42a2d007d0bdd828c, type: 3}
       propertyPath: m_LocalPosition.x

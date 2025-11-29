@@ -9925,6 +9925,7 @@ MonoBehaviour:
   conveyorMask:
     serializedVersion: 2
     m_Bits: 0
+  stepCount: {fileID: 0}
   canPushCount: 5
   fuseTime: 25
   explodeVfx: {fileID: 0}
@@ -22728,6 +22729,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 738565987746523058, guid: 933d3fb7b5e19934ba3704aa422a0b03, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 106.36
+      objectReference: {fileID: 0}
+    - target: {fileID: 738565987746523058, guid: 933d3fb7b5e19934ba3704aa422a0b03, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 94.22
+      objectReference: {fileID: 0}
     - target: {fileID: 1327907305054929423, guid: 933d3fb7b5e19934ba3704aa422a0b03, type: 3}
       propertyPath: m_LocalPosition.x
       value: 160.4
@@ -22739,6 +22748,10 @@ PrefabInstance:
     - target: {fileID: 1685548862132946922, guid: 933d3fb7b5e19934ba3704aa422a0b03, type: 3}
       propertyPath: m_Name
       value: Lava_Island_02
+      objectReference: {fileID: 0}
+    - target: {fileID: 2290450723569188247, guid: 933d3fb7b5e19934ba3704aa422a0b03, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2890077378673046968, guid: 933d3fb7b5e19934ba3704aa422a0b03, type: 3}
       propertyPath: m_LocalPosition.x
@@ -22767,6 +22780,34 @@ PrefabInstance:
     - target: {fileID: 3671422474334480935, guid: 933d3fb7b5e19934ba3704aa422a0b03, type: 3}
       propertyPath: m_LocalPosition.z
       value: 147.81
+      objectReference: {fileID: 0}
+    - target: {fileID: 4372515589835288670, guid: 933d3fb7b5e19934ba3704aa422a0b03, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7448945494481010899, guid: 933d3fb7b5e19934ba3704aa422a0b03, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 162.11
+      objectReference: {fileID: 0}
+    - target: {fileID: 7448945494481010899, guid: 933d3fb7b5e19934ba3704aa422a0b03, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 105.77
+      objectReference: {fileID: 0}
+    - target: {fileID: 7448945494481010901, guid: 933d3fb7b5e19934ba3704aa422a0b03, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8204229172424860336, guid: 933d3fb7b5e19934ba3704aa422a0b03, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8450802648053116026, guid: 933d3fb7b5e19934ba3704aa422a0b03, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 125.56
+      objectReference: {fileID: 0}
+    - target: {fileID: 8450802648053116026, guid: 933d3fb7b5e19934ba3704aa422a0b03, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 100.47
       objectReference: {fileID: 0}
     - target: {fileID: 8931422812647360433, guid: 933d3fb7b5e19934ba3704aa422a0b03, type: 3}
       propertyPath: m_LocalPosition.x
