@@ -312,6 +312,7 @@ GameObject:
   - component: {fileID: 9001586851993818094}
   - component: {fileID: 8855062333675234486}
   - component: {fileID: 2498244907695644505}
+  - component: {fileID: 2243780313521779791}
   m_Layer: 6
   m_Name: boom_Barrel
   m_TagString: Untagged
@@ -327,7 +328,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3724251398831955872}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.0839844, y: 0.42000008, z: 1.0630035}
   m_LocalScale: {x: 0.45198, y: 0.45198, z: 0.45198}
   m_ConstrainProportionsScale: 0
@@ -374,13 +375,13 @@ MonoBehaviour:
   checkExtents: {x: 0.45, y: 0.5, z: 0.45}
   blockMask:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 640
   holeMask:
     serializedVersion: 2
     m_Bits: 256
   conveyorMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 1024
   stepCount: {fileID: 7940866353815973454}
   canPushCount: 8
   fuseTime: 3
@@ -484,6 +485,28 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &2243780313521779791
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3724251398831955872}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: b6c5b842096d3544f9c1a8396f353f44, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 1
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &1486689043127647637
 PrefabInstance:
   m_ObjectHideFlags: 0

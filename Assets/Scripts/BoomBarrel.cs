@@ -20,6 +20,8 @@ public class BoomBarrel : MonoBehaviour, IPushable
     public AudioClip pushSound;
     public AudioSource audio;
 
+    public Vector3 pushingCheckPos = new Vector3();
+
     private void Start()
     {
         audio = GetComponent<AudioSource>();
