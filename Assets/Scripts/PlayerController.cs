@@ -5,8 +5,6 @@ public enum FacingDirection { Left, Right, Down, Up }
 
 public class PlayerController : MonoBehaviour
 {
-   
-
     // 输入状态
     private int leftHeld = 0;
     private int rightHeld = 0;
@@ -45,66 +43,48 @@ public class PlayerController : MonoBehaviour
         HandleFacingDirection();
         HandleMovement();
         HandleGameOver();
-    }
 
+    }
+    // 清除输入状态的辅助方法
+    void ClearInputState()
+    {
+        leftPressed = false;
+        rightPressed = false;
+        upPressed = false;
+        downPressed = false;
+    }
     void HandleInput()
     {
-        // 处理按键按住时间
-        if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
+
+        // 重置所有按键状态
+        leftPressed = false;
+        rightPressed = false;
+        upPressed = false;
+        downPressed = false;
+
+        // 只处理按键按下，不处理长按重复
+        bool keyDownLeft = Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A);
+        bool keyDownRight = Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D);
+        bool keyDownUp = Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W);
+        bool keyDownDown = Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S);
+
+        // 如果有多个方向键同时按下，只取第一个（按优先级）
+        if (keyDownLeft || keyDownRight || keyDownUp || keyDownDown)
         {
-            leftHeld++;
-        }
-        else
-        {
-            leftHeld = 0;
+            // 防止多方向同时输入
+            if ((keyDownLeft ? 1 : 0) + (keyDownRight ? 1 : 0) + (keyDownUp ? 1 : 0) + (keyDownDown ? 1 : 0) > 1 ||
+                conveyed || Global.win)
+            {
+                return; // 多个方向或特殊状态，不处理输入
+            }
+
+            // 设置对应的按键状态
+            leftPressed = keyDownLeft;
+            rightPressed = keyDownRight;
+            upPressed = keyDownUp;
+            downPressed = keyDownDown;
         }
 
-        if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
-        {
-            rightHeld++;
-        }
-        else
-        {
-            rightHeld = 0;
-        }
-
-        if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
-        {
-            upHeld++;
-        }
-        else
-        {
-            upHeld = 0;
-        }
-
-        if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
-        {
-            downHeld++;
-        }
-        else
-        {
-            downHeld = 0;
-        }
-
-        // 处理按键触发（包括长按重复）
-        leftPressed = Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A) ||
-                     (leftHeld > 14 && leftHeld % 8 == 0);
-        rightPressed = Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D) ||
-                      (rightHeld > 14 && rightHeld % 8 == 0);
-        upPressed = Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W) ||
-                   (upHeld > 14 && upHeld % 8 == 0);
-        downPressed = Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.S) ||
-                     (downHeld > 14 && downHeld % 8 == 0);
-
-        // 防止多方向同时输入
-        if ((leftPressed ? 1 : 0) + (rightPressed ? 1 : 0) + (upPressed ? 1 : 0) + (downPressed ? 1 : 0) > 1 ||
-            conveyed || Global.win)
-        {
-            leftPressed = false;
-            rightPressed = false;
-            upPressed = false;
-            downPressed = false;
-        }
     }
 
     void HandleConveyor()
@@ -169,20 +149,16 @@ public class PlayerController : MonoBehaviour
 
     void HandleMovement()
     {
-        
+
         float hMovement = (-(leftPressed ? 1 : 0) + (rightPressed ? 1 : 0)) * moveDistance;
         float vMovement = ((upPressed ? 1 : 0) + -(downPressed ? 1 : 0)) * moveDistance;
-
-        if(leftPressed || rightPressed)
-        {
-            Debug.Log(hMovement);
-        }
 
         Vector3 targetPosition = transform.position + new Vector3(hMovement, 0, vMovement);
 
         // 检查墙壁碰撞
         if (Physics.OverlapBox(targetPosition, Vector3.one * 0.45f, Quaternion.identity, wallLayer).Length > 0)
         {
+            ClearInputState(); // 清除输入
             return; // 有墙壁，不移动
         }
 
@@ -193,9 +169,11 @@ public class PlayerController : MonoBehaviour
             IPushable pushable = collider.GetComponent<IPushable>();
             if (pushable != null)
             {
+                Debug.Log("push:" + Time.time.ToString("f2"));
                 bool didPush = pushable.Push(new Vector3(hMovement, 0, vMovement));
                 if (!didPush)
                 {
+                    ClearInputState(); // 清除输入
                     return; // 箱子推不动，玩家也不移动
                 }
             }
@@ -203,6 +181,9 @@ public class PlayerController : MonoBehaviour
 
         // 应用移动
         transform.position = targetPosition;
+
+        // 关键：移动后立即清除所有输入状态
+        ClearInputState();
     }
     public void Convey(FacingDirection dir)
     {
