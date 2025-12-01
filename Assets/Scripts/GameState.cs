@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GameState : MonoBehaviour
 {
@@ -13,7 +14,9 @@ public class GameState : MonoBehaviour
     public AudioSource sfx;
     public AudioClip sndEarly;
     public AudioClip sndWin;
+    public ParticleSystem winParticle;
 
+    public UnityEvent winEvent;
     void Awake()
     {
         if (I != null && I != this) { Destroy(gameObject); return; }
@@ -27,6 +30,8 @@ public class GameState : MonoBehaviour
         {
             // play a emulerator to show's up the win stuff;
             if (sfx && sndWin) sfx.PlayOneShot(sndWin);
+            winParticle.gameObject.SetActive(true);
+            winEvent?.Invoke();
             win = true;
         }
     }
