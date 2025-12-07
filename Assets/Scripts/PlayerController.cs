@@ -5,12 +5,6 @@ public enum FacingDirection { Left, Right, Down, Up }
 
 public class PlayerController : MonoBehaviour
 {
-    // 输入状态
-    private int leftHeld = 0;
-    private int rightHeld = 0;
-    private int upHeld = 0;
-    private int downHeld = 0;
-
     // 按键触发状态
     private bool leftPressed = false;
     private bool rightPressed = false;
@@ -22,6 +16,8 @@ public class PlayerController : MonoBehaviour
     private bool conveyed = false;
     private FacingDirection conveyerDir = FacingDirection.Right;
 
+    private bool isPushing;
+
     // 引用
     private SpriteRenderer spriteRenderer;
     public LayerMask wallLayer;
@@ -31,9 +27,28 @@ public class PlayerController : MonoBehaviour
     // 移动参数
     private float moveDistance = 1f;
 
+    private Coroutine PushingDetect;
+
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        PushingDetect = StartCoroutine(PushingRecover());
+    }
+
+    IEnumerator PushingRecover()
+    {
+        while (true)
+        {
+            if (isPushing)
+            {
+                yield return null;
+                isPushing = false;
+            }
+            else
+            {
+                yield return null;
+            }
+        }
     }
 
     void Update()
@@ -55,12 +70,14 @@ public class PlayerController : MonoBehaviour
     }
     void HandleInput()
     {
-
         // 重置所有按键状态
         leftPressed = false;
         rightPressed = false;
         upPressed = false;
         downPressed = false;
+
+        if (isPushing)
+            return;
 
         // 只处理按键按下，不处理长按重复
         bool keyDownLeft = Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A);
@@ -149,7 +166,6 @@ public class PlayerController : MonoBehaviour
 
     void HandleMovement()
     {
-
         float hMovement = (-(leftPressed ? 1 : 0) + (rightPressed ? 1 : 0)) * moveDistance;
         float vMovement = ((upPressed ? 1 : 0) + -(downPressed ? 1 : 0)) * moveDistance;
 
@@ -171,6 +187,7 @@ public class PlayerController : MonoBehaviour
             {
                 Debug.Log("push:" + Time.time.ToString("f2"));
                 bool didPush = pushable.Push(new Vector3(hMovement, 0, vMovement));
+                isPushing = true;
                 if (!didPush)
                 {
                     ClearInputState(); // 清除输入
