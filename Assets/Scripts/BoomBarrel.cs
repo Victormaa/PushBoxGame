@@ -60,7 +60,11 @@ public class BoomBarrel : MonoBehaviour, IPushable
         Vector3 target = transform.position + delta;
 
         if (Physics.OverlapBox(target, checkExtents, Quaternion.identity, blockMask, QueryTriggerInteraction.Ignore).Length > 0)
+        {
+            Explode();
             return false;
+        }
+            
 
         transform.position = target;
 
@@ -73,7 +77,6 @@ public class BoomBarrel : MonoBehaviour, IPushable
 
         return true;
     }
-
     public void Explode()
     {
         if (exploded) return;
@@ -88,7 +91,6 @@ public class BoomBarrel : MonoBehaviour, IPushable
 
         Destroy(gameObject);
     }
-
     private bool OverlapsMask(Vector3 center, LayerMask mask)
     {
         return Physics.OverlapBox(center, checkExtents, Quaternion.identity, mask, QueryTriggerInteraction.Ignore).Length > 0;
