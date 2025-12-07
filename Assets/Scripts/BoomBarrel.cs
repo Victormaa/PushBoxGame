@@ -30,6 +30,12 @@ public class BoomBarrel : MonoBehaviour, IPushable
 
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Equals)|| Input.GetKeyDown(KeyCode.Plus))
+        {
+            canPushCount += 1;
+            stepCount.text = canPushCount.ToString();
+        }
+
         if (exploded || GameState.I == null) return;
 
         //if (fuseTime > 0f) fuseTime -= Time.deltaTime;
