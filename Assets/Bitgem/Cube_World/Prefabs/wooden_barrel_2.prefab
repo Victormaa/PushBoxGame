@@ -273,7 +273,7 @@ MonoBehaviour:
   checkExtents: {x: 0.45, y: 0.5, z: 0.45}
   blockMask:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 704
 --- !u!1 &1981732709000716
 GameObject:
   m_ObjectHideFlags: 0
