@@ -77,6 +77,7 @@ public class BoomBarrel : MonoBehaviour, IPushable
         if (!conveyorPush)
         {
             canPushCount -= 1;
+            Mathf.Clamp(canPushCount, 0, 100);
             stepCount.text = canPushCount.ToString(); 
             audio.PlayOneShot(pushSound);
         }
