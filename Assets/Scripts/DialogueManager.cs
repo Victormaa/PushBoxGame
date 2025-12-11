@@ -7,6 +7,7 @@ using UnityEngine.Localization;
 using UnityEngine.ResourceManagement.AsyncOperations;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System;
 
 [System.Serializable]
 public class DialogueLine
@@ -82,8 +83,15 @@ public class DialogueManager : MonoBehaviour
 
     public void OnDialogueEnd()
     {
-        StartCoroutine(FadeAndLoadNextScene());
+        StartCoroutine(DialogueEnd());
     }
+
+    private IEnumerator DialogueEnd()
+    {
+        yield return StartCoroutine(FadeAndLoadNextScene());
+        StartCoroutine(FadeInGame());
+    }
+
     // 一键强制隐藏 UI
     private void ForceHideUI()
     {
@@ -303,8 +311,53 @@ public class DialogueManager : MonoBehaviour
             blackScreenCG.alpha = Mathf.Clamp01(t / fadeDuration);
             yield return null;
         }
-
+        
         //SceneManager.LoadScene(nextSceneName);
+
+    }
+    /// <summary>
+    /// 渐显游戏（黑幕淡出）
+    /// </summary>
+    /// <param name="onFadeComplete">淡出完成后的回调</param>
+    /// <returns></returns>
+    private IEnumerator FadeInGame(Action onFadeComplete = null)
+    {
+        // 如果没有黑幕组件，直接执行回调
+        if (blackScreenCG == null)
+        {
+            onFadeComplete?.Invoke();
+            yield break;
+        }
+
+        //isTransitioning = true;
+
+        // 确保黑幕在最上层且完全可见
+        PrepareBlackScreen();
+        blackScreenCG.alpha = 1f;
+        blackScreenCG.gameObject.SetActive(true);
+
+        Debug.Log("开始游戏渐显（黑幕淡出）...");
+
+        float t = 0f;
+        while (t < fadeDuration)
+        {
+            t += Time.unscaledDeltaTime;
+            blackScreenCG.alpha = Mathf.Clamp01(1f - (t / fadeDuration)); // 反向计算透明度
+            yield return null;
+        }
+
+        // 确保完全透明
+        blackScreenCG.alpha = 0f;
+
+        // 可选：淡出完成后隐藏黑幕
+        blackScreenCG.gameObject.SetActive(false);
+
+        //isTransitioning = false;
+
+        // 触发完成回调
+        onFadeComplete?.Invoke();
+
+        Debug.Log("游戏渐显完成");
     }
 
     // ======= 临时消息（保持你原有的公共 API）=======
