@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97269afb30aa84742ae3f3342603618a, type: 3}
+  m_Name: AudioAndSprites_en-US
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en-US
+  m_SharedData: {fileID: 11400000, guid: 5b84feadc434b974eb49458c892d6392, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 62057865216
+    m_Localized: '21695edd0c1a85348913ea71a1663b6c[player]'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 197257060352
+    m_Localized: '99c35faa4ea2b524a93c462437d0d9a1[NPC]'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 257537597440
+    m_Localized: 702fb8f5b364b564b8727686eed8f8d1
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []
