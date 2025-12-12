@@ -26,6 +26,14 @@ MonoBehaviour:
     m_Localized: I am a letter delivery man who are you?
     m_Metadata:
       m_Items: []
+  - m_Id: 280432398028800
+    m_Localized: I see. Good Luck
+    m_Metadata:
+      m_Items: []
+  - m_Id: 280642608156672
+    m_Localized: See you sooon
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

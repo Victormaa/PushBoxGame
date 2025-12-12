@@ -15,11 +15,6 @@ MonoBehaviour:
   m_GroupName: Localization-Assets-Shared
   m_GUID: b349a235598174e47b188490685b870d
   m_SerializeEntries:
-  - m_GUID: 32077b325806d6b449e35a8b81b4eb12
-    m_Address: Assets/Resources/Localizations/Audio Shared Data.asset
-    m_ReadOnly: 1
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 3ec19425799c9654698fc5364b429629
     m_Address: Assets/Localizations/Dialogues Shared Data.asset
     m_ReadOnly: 1
@@ -32,6 +27,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5b84feadc434b974eb49458c892d6392
     m_Address: Assets/Localizations/AudioAndSprites Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5ef7d0e3eddba7740be4562b0eb7d29e
+    m_Address: Assets/Localizations/JapaneseLocal/JapaneseLines Shared Data.asset
     m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
