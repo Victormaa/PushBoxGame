@@ -1,0 +1,62 @@
+	
+--------------Little Ghost lowpoly(Special edition)----------------------------
+
+Version 4.0 : June 2025 Updates
+
+- Added 7 New Ghost Variation's
+
+Version 3.0 : Aug 2024 Updates
+
+- Skeletal Tree's (9 Prefabs)
+- Pumpkin's (10 Prefabs)
+- Graveyard Stones (9 Prefabs)
+
+
+This pack contains 3d Model and Animation of a "Little Ghost".
+
+Technical Details:-
+		- Prefabs : 60 (Total) - 32 (Ghost's),9 (Skeletal Tree's), 10 (Pumpkin's), 9 (Graveyard stones)
+		- Poly count (in Tris) : 
+572(Ghost), 632(Hat), 236(Axe), 476(Devil Head), Pumpkin's (2344 to 4538),
+Graveyard stones (136 to 364 Polygon's), Skeletal Trees (6580 to 8940 Polygon's)
+
+		- Animations : 12 (Idle, idle up & down, attack1, attack2, run, run2/fly, dance1, dance2, dance3, hide/death, wake/Rebirth, look)
+		- Used Material(s) : Unity standard material
+		- Texture maps : Albedo/Base Color, Emission (For one Ghost variation)
+		- Texture Size : 2048
+
+Features:-
+	- Low poly design
+	- Highly Customizable (Create new ghost easily)
+	- Include ghost creator's script(Add/Remove props & change materials in one click)
+	- Mobile/AR Ready asset
+	- UV Unwrapped
+	- You can add PBR textures
+	- Smooth animations (loop & non-loop, Seamless)
+	- High quality textures
+	- Easy to edit/modify
+	- Demo scene & Scripts included
+		
+Folder details:-
+
+	Materials : Where the materials for the model located.
+	
+	Meshes : Contain FBX format of the 3d model.
+	
+	Textures : Contains Textures, that are in (.PNG) file format
+	
+	(Other folders - Prefabs, Scenes)
+
+How to use:-
+	
+	Simply drag and drop the prefab to your scene and use it.
+	(Prefab(s) located under 
+	Asset > Little Ghost lowpoly > Prefabs).
+
+..................................................................................
+
+About Us : "SR Studios Kerala", Game developing company located in Alappuzha, Kerala, India
+
+Contact : srstudioskerala@gmail.com
+
+................Thanks for downloading this package................................
