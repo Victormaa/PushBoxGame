@@ -57,6 +57,63 @@ MonoBehaviour:
     m_Metadata:
       m_Items:
       - rid: 3876607838520082518
+  - m_Id: 1561305226072064
+    m_Localized: Let me guess...another "mysterious rock" you picked up?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1562959086276608
+    m_Localized: 'No, no, no! This time it''s real!
+
+      I found a hole! A Big
+      dark spooky hole!
+
+      And inside it...I heard voices! From the human world!'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1563753126744064
+    m_Localized: Hold on, did you just say "human world"? The human world? The legendary
+      ancient passage that everyone says stopped working centuries ago?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1564554792456192
+    m_Localized: Yep! That one! I heard real people talking in there!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1564856711041024
+    m_Localized: "Then\u2026 we might actually send a message to our child?  Oh goodness\u2026
+      how is he doing now? Did he grow taller? Does he\u2026 still remember us?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1565474347470848
+    m_Localized: "That\u2019s why I rushed back to tell you!\nIf you want\u2026 I
+      can help you send a letter through the hole!\nIt seems like messages can still
+      travel to the human world!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1566418338500608
+    m_Localized: "We want that! Absolutely! We need to let him know we\u2019re doing
+      fine here\u2014really fine!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1566706126475264
+    m_Localized: Little Ghost, would you help us deliver the letter?  It would mean
+      the world to us.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1567079616663552
+    m_Localized: "Of course I will!\nI\u2019ll deliver it safely, I promise!\nOnce
+      I\u2019m done, I\u2019ll come straight back and tell you everything!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1567503522385920
+    m_Localized: "You sweet little thing. \nWe\u2019re counting on you, our tiny
+      mailman!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1567836009058304
+    m_Localized: 'Leave it to me! '
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds:
