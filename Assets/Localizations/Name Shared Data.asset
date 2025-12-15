@@ -23,6 +23,10 @@ MonoBehaviour:
     m_Key: Player
     m_Metadata:
       m_Items: []
+  - m_Id: 1477181031239680
+    m_Key: BluerenNPC
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

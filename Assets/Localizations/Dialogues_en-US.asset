@@ -16,7 +16,8 @@ MonoBehaviour:
     m_Code: en-US
   m_SharedData: {fileID: 11400000, guid: 3ec19425799c9654698fc5364b429629, type: 2}
   m_Metadata:
-    m_Items: []
+    m_Items:
+    - rid: 3876607838520082518
   m_TableData:
   - m_Id: 120509685760
     m_Localized: What is this for
@@ -34,6 +35,34 @@ MonoBehaviour:
     m_Localized: See you sooon
     m_Metadata:
       m_Items: []
+  - m_Id: 1476261736271872
+    m_Localized: Hi what shoul i do
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1478240374018048
+    m_Localized: Hi Who are you
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1478521757290496
+    m_Localized: This is the second
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1479108251013120
+    m_Localized: HIHIHIHI
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1480760664182784
+    m_Localized: Red Auntie! Blue Uncle! Guess what I just found! Something SUPER
+      amazing!
+    m_Metadata:
+      m_Items:
+      - rid: 3876607838520082518
   references:
     version: 2
-    RefIds: []
+    RefIds:
+    - rid: 3876607838520082518
+      type: {class: SmartFormatTag, ns: UnityEngine.Localization.Metadata, asm: Unity.Localization}
+      data:
+        m_Entries: 
+        m_SharedEntries:
+        - id: 1480760664182784

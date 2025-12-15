@@ -27,6 +27,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-en-US
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 73a6bd7e9445d2e4a88e88d1e17f488a
+    m_Address: NPC 1
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en-US
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 99c35faa4ea2b524a93c462437d0d9a1
     m_Address: NPC
     m_ReadOnly: 1

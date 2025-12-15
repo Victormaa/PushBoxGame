@@ -27,6 +27,10 @@ MonoBehaviour:
     m_Key: TestAudio
     m_Metadata:
       m_Items: []
+  - m_Id: 1474540024811520
+    m_Key: NPC 1
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items:
     - rid: 1530333521675551039
@@ -48,6 +52,9 @@ MonoBehaviour:
           m_TableCodes:
           - en-US
         - m_KeyId: 197257060352
+          m_TableCodes:
+          - en-US
+        - m_KeyId: 1474540024811520
           m_TableCodes:
           - en-US
         m_TypeString: UnityEngine.Sprite, UnityEngine.CoreModule, Version=0.0.0.0,

@@ -31,6 +31,30 @@ MonoBehaviour:
     m_Key: Level1_12
     m_Metadata:
       m_Items: []
+  - m_Id: 1476261736271872
+    m_Key: BlueRedNPC1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1478240374018048
+    m_Key: PlayerToBR1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1478521757290496
+    m_Key: PlayertoBR2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1478858249523200
+    m_Key: B
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1479108251013120
+    m_Key: BRtoPlayer3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1480760664182784
+    m_Key: P-N1(1)
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

@@ -26,6 +26,10 @@ MonoBehaviour:
     m_Localized: Player
     m_Metadata:
       m_Items: []
+  - m_Id: 1477181031239680
+    m_Localized: Red and Blue
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
