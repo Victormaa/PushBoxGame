@@ -3,9 +3,10 @@ using UnityEngine;
 [RequireComponent(typeof(Collider))]
 public class Barrel : MonoBehaviour, IPushable
 {
-    public float stepSize = 1f;
+    public float stepSize = 1f; // bool float int string
     public Vector3 checkExtents = new Vector3(0.45f, 0.5f, 0.45f);
     public LayerMask blockMask;
+
 
     public bool Push(Vector3 delta, bool conveyorPush = false)
     {
