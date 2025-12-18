@@ -7,6 +7,12 @@ public class Barrel : MonoBehaviour, IPushable
     public Vector3 checkExtents = new Vector3(0.45f, 0.5f, 0.45f);
     public LayerMask blockMask;
 
+    private bool pushing = false;
+
+    public bool isPushing()
+    {
+        return pushing;
+    }
 
     public bool Push(Vector3 delta, bool conveyorPush = false)
     {

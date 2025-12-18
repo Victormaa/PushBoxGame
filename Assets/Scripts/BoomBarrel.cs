@@ -22,14 +22,19 @@ public class BoomBarrel : MonoBehaviour, IPushable
 
     public Vector3 pushingCheckPos = new Vector3();
 
+    private bool pushing;
+    private Vector3 targetPos;
+
     private void Start()
     {
         audio = GetComponent<AudioSource>();
         stepCount.text = canPushCount.ToString();
+        targetPos = transform.position;
     }
 
     void Update()
     {
+        // for test
         if (Input.GetKeyDown(KeyCode.Equals)|| Input.GetKeyDown(KeyCode.Plus))
         {
             canPushCount += 1;
@@ -38,11 +43,12 @@ public class BoomBarrel : MonoBehaviour, IPushable
 
         if (exploded || GameState.I == null) return;
 
-        //if (fuseTime > 0f) fuseTime -= Time.deltaTime;
+        // pushing finished;
+        if(pushing && transform.position == targetPos)
+            pushing = false;
 
         bool inHole = OverlapsMask(transform.position, holeMask);
         bool onConveyor = OverlapsMask(transform.position, conveyorMask);
-
         if (canPushCount > 0f && inHole)
         {
             GameState.I.GameOverOnce("Too early!");
@@ -63,17 +69,16 @@ public class BoomBarrel : MonoBehaviour, IPushable
 
     public bool Push(Vector3 delta, bool conveyorPush = false)
     {
-        Vector3 target = transform.position + delta;
-
-        if (Physics.OverlapBox(target, checkExtents, Quaternion.identity, blockMask, QueryTriggerInteraction.Ignore).Length > 0)
+        // detect if could be pushed
+        if (Physics.OverlapBox(transform.position + delta, checkExtents, Quaternion.identity, blockMask, QueryTriggerInteraction.Ignore).Length > 0)
         {
             Explode();
             return false;
         }
-            
 
-        transform.position = target;
-
+        pushing = true;
+        targetPos = transform.position + delta;
+        transform.position = targetPos;
         if (!conveyorPush)
         {
             canPushCount -= 1;
@@ -81,7 +86,6 @@ public class BoomBarrel : MonoBehaviour, IPushable
             stepCount.text = canPushCount.ToString(); 
             audio.PlayOneShot(pushSound);
         }
-
         return true;
     }
     public void Explode()
@@ -101,5 +105,10 @@ public class BoomBarrel : MonoBehaviour, IPushable
     private bool OverlapsMask(Vector3 center, LayerMask mask)
     {
         return Physics.OverlapBox(center, checkExtents, Quaternion.identity, mask, QueryTriggerInteraction.Ignore).Length > 0;
+    }
+
+    bool IPushable.isPushing()
+    {
+        return pushing;
     }
 }

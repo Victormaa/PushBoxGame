@@ -774,6 +774,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DialogueCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 3106402719724030382, guid: 7abea693d6ca3884caefae67cd8e3fa8, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5275674405959732534, guid: 7abea693d6ca3884caefae67cd8e3fa8, type: 3}
       propertyPath: m_Alpha
       value: 1
@@ -1023,6 +1027,10 @@ PrefabInstance:
     - target: {fileID: 1084757614027156626, guid: 94039c4fed931204e803929ac7d97567, type: 3}
       propertyPath: m_Name
       value: DialogueManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 1084757614027156626, guid: 94039c4fed931204e803929ac7d97567, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5722259031312104895, guid: 94039c4fed931204e803929ac7d97567, type: 3}
       propertyPath: blackScreen
