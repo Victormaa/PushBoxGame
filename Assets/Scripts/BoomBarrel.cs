@@ -47,6 +47,10 @@ public class BoomBarrel : MonoBehaviour, IPushable
         if(pushing && transform.position == targetPos)
             pushing = false;
 
+        // pushing
+        if (transform.position != targetPos)
+            transform.position = targetPos;
+
         bool inHole = OverlapsMask(transform.position, holeMask);
         bool onConveyor = OverlapsMask(transform.position, conveyorMask);
         if (canPushCount > 0f && inHole)
@@ -78,7 +82,6 @@ public class BoomBarrel : MonoBehaviour, IPushable
 
         pushing = true;
         targetPos = transform.position + delta;
-        transform.position = targetPos;
         if (!conveyorPush)
         {
             canPushCount -= 1;
