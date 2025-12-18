@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     private bool conveyed = false;
     private FacingDirection conveyerDir = FacingDirection.Right;
 
-    //private bool isPushing;
+    private bool isPushing;
 
     // 引用
     private SpriteRenderer spriteRenderer;
@@ -32,24 +32,24 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        //PushingDetect = StartCoroutine(PushingRecover());
+        PushingDetect = StartCoroutine(PushingRecover());
     }
 
-    //IEnumerator PushingRecover()
-    //{
-    //    while (true)
-    //    {
-    //        if (isPushing)
-    //        {
-    //            yield return null;
-    //            isPushing = false;
-    //        }
-    //        else
-    //        {
-    //            yield return null;
-    //        }
-    //    }
-    //}
+    IEnumerator PushingRecover()
+    {
+        while (true)
+        {
+            if (isPushing)
+            {
+                yield return null;
+                isPushing = false;
+            }
+            else
+            {
+                yield return null;
+            }
+        }
+    }
 
     void Update()
     {
@@ -171,6 +171,9 @@ public class PlayerController : MonoBehaviour
 
     void HandleMovement()
     {
+        if (isPushing)
+            return;
+
         float hMovement = (-(leftPressed ? 1 : 0) + (rightPressed ? 1 : 0)) * moveDistance;
         float vMovement = ((upPressed ? 1 : 0) + -(downPressed ? 1 : 0)) * moveDistance;
 
@@ -189,14 +192,11 @@ public class PlayerController : MonoBehaviour
         {
             IPushable pushable = collider.GetComponent<IPushable>();
 
-            if (pushable.isPushing())
-                return;
-
             if (pushable != null)
             {
                 Debug.Log("push:" + Time.time.ToString("f2"));
                 bool didPush = pushable.Push(new Vector3(hMovement, 0, vMovement));
-                //isPushing = true;
+                isPushing = true;
                 if (!didPush)
                 {
                     ClearInputState(); // 清除输入
