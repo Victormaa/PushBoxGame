@@ -60,7 +60,6 @@ public class PlayerController : MonoBehaviour
         HandleGameOver();
 
     }
-
     private void FixedUpdate()
     {
         
@@ -228,7 +227,6 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
-
     // 外部调用的方法
     public void SetConveyed(bool state, FacingDirection direction)
     {
@@ -236,13 +234,11 @@ public class PlayerController : MonoBehaviour
         conveyerDir = direction;
     }
 }
-
 public static class Global
 {
     public static bool gameOver = false;
     public static bool win = false;
 }
-
 public class Explosion : MonoBehaviour
 {
     // 爆炸效果类
