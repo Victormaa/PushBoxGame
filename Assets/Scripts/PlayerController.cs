@@ -16,8 +16,6 @@ public class PlayerController : MonoBehaviour
     private bool conveyed = false;
     private FacingDirection conveyerDir = FacingDirection.Right;
 
-    private bool isPushing;
-
     // 引用
     private SpriteRenderer spriteRenderer;
     public LayerMask wallLayer;
@@ -27,30 +25,14 @@ public class PlayerController : MonoBehaviour
     // 移动参数
     private float moveDistance = 1f;
 
-    private Coroutine PushingDetect;
+    private IPushable curPushing;
+
+    private Vector3 targetPos;
 
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        PushingDetect = StartCoroutine(PushingRecover());
     }
-
-    IEnumerator PushingRecover()
-    {
-        while (true)
-        {
-            if (isPushing)
-            {
-                yield return null;
-                isPushing = false;
-            }
-            else
-            {
-                yield return null;
-            }
-        }
-    }
-
     void Update()
     {
         HandleInput();
@@ -58,7 +40,6 @@ public class PlayerController : MonoBehaviour
         HandleFacingDirection();
         HandleMovement();
         HandleGameOver();
-
     }
     private void FixedUpdate()
     {
@@ -80,8 +61,8 @@ public class PlayerController : MonoBehaviour
         upPressed = false;
         downPressed = false;
 
-        //if (isPushing)
-        //    return;
+        if (curPushing!=null && curPushing.isPushing)
+            return;
 
         // 只处理按键按下，不处理长按重复
         bool keyDownLeft = Input.GetKeyDown(KeyCode.LeftArrow) || Input.GetKeyDown(KeyCode.A);
@@ -107,7 +88,6 @@ public class PlayerController : MonoBehaviour
         }
 
     }
-
     void HandleConveyor()
     {
         if (conveyed)
@@ -130,7 +110,6 @@ public class PlayerController : MonoBehaviour
             }
         }
     }
-
     void HandleFacingDirection()
     {
         if (leftPressed)
@@ -167,12 +146,8 @@ public class PlayerController : MonoBehaviour
                 break;
         }
     }
-
     void HandleMovement()
     {
-        if (isPushing)
-            return;
-
         float hMovement = (-(leftPressed ? 1 : 0) + (rightPressed ? 1 : 0)) * moveDistance;
         float vMovement = ((upPressed ? 1 : 0) + -(downPressed ? 1 : 0)) * moveDistance;
 
@@ -190,12 +165,12 @@ public class PlayerController : MonoBehaviour
         foreach (Collider collider in collidersAtTarget)
         {
             IPushable pushable = collider.GetComponent<IPushable>();
-
+            
             if (pushable != null)
             {
+                curPushing = pushable;
                 Debug.Log("push:" + Time.time.ToString("f2"));
-                bool didPush = pushable.Push(new Vector3(hMovement, 0, vMovement));
-                isPushing = true;
+                bool didPush = curPushing.Push(new Vector3(hMovement, 0, vMovement));
                 if (!didPush)
                 {
                     ClearInputState(); // 清除输入
@@ -205,7 +180,8 @@ public class PlayerController : MonoBehaviour
         }
 
         // 应用移动
-        transform.position = targetPosition;
+        if(!curPushing.isPushing)
+            transform.position = targetPosition;
 
         // 关键：移动后立即清除所有输入状态
         ClearInputState();

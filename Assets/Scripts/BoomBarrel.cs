@@ -2,7 +2,7 @@ using TMPro;
 using UnityEngine;
 
 [RequireComponent(typeof(Collider))]
-public class BoomBarrel : MonoBehaviour, IPushable
+public class BoomBarrel : IPushable
 {
     public float stepSize = 1f;
     public Vector3 checkExtents = new Vector3(0.45f, 0.5f, 0.45f);
@@ -22,6 +22,7 @@ public class BoomBarrel : MonoBehaviour, IPushable
 
     public Vector3 pushingCheckPos = new Vector3();
     private Vector3 targetPos;
+    private Vector3 prePos;
 
     private void Start()
     {
@@ -40,6 +41,23 @@ public class BoomBarrel : MonoBehaviour, IPushable
         }
 
         if (exploded || GameState.I == null) return;
+
+        // translate
+        if (Vector2.Distance(new Vector2(transform.position.x,transform.position.z), new Vector2(targetPos.x,targetPos.z)) >= 0.15f)
+        {
+            this.transform.Translate(-(targetPos - prePos).normalized * Time.deltaTime * 10);
+            if(Vector2.Distance(new Vector2(transform.position.x, transform.position.z), new Vector2(targetPos.x, targetPos.z)) < 0.15f
+                || Vector3.Dot((prePos - targetPos).normalized, (transform.position - targetPos).normalized) < 0)
+            {
+                isPushing = false;
+                transform.position = targetPos;
+            }
+        }
+        else
+        {
+            isPushing = false;
+            transform.position = targetPos;
+        }
 
         bool inHole = OverlapsMask(transform.position, holeMask);
         bool onConveyor = OverlapsMask(transform.position, conveyorMask);
@@ -61,7 +79,7 @@ public class BoomBarrel : MonoBehaviour, IPushable
         }
     }
 
-    public bool Push(Vector3 delta, bool conveyorPush = false)
+    public override bool Push(Vector3 delta, bool conveyorPush = false)
     {
         // detect if could be pushed
         if (Physics.OverlapBox(transform.position + delta, checkExtents, Quaternion.identity, blockMask, QueryTriggerInteraction.Ignore).Length > 0)
@@ -69,8 +87,10 @@ public class BoomBarrel : MonoBehaviour, IPushable
             Explode();
             return false;
         }
+        isPushing = true;
         targetPos = transform.position + delta;
-        transform.position = targetPos;
+        prePos = transform.position;
+        //transform.position = targetPos;
         if (!conveyorPush)
         {
             canPushCount -= 1;
