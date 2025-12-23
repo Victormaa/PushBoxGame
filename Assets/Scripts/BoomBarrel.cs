@@ -87,9 +87,19 @@ public class BoomBarrel : IPushable
             Explode();
             return false;
         }
+
+        
         isPushing = true;
-        targetPos = transform.position + delta;
-        prePos = transform.position;
+        if (!conveyorPush)
+        {
+            targetPos = transform.position + delta;
+            prePos = transform.position;
+        }
+        else
+        {
+            targetPos = targetPos + delta;
+            prePos = transform.position;
+        }
         //transform.position = targetPos;
         if (!conveyorPush)
         {
