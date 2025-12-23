@@ -52,6 +52,7 @@ public class PlayerController : MonoBehaviour
         rightPressed = false;
         upPressed = false;
         downPressed = false;
+        curPushing = null;
     }
     void HandleInput()
     {
@@ -180,8 +181,16 @@ public class PlayerController : MonoBehaviour
         }
 
         // 应用移动
-        if(!curPushing.isPushing)
+        if(curPushing != null)
+        {
+            if (!curPushing.isPushing)
+                transform.position = targetPosition;
+        }
+        else
+        {
             transform.position = targetPosition;
+        }
+         
 
         // 关键：移动后立即清除所有输入状态
         ClearInputState();

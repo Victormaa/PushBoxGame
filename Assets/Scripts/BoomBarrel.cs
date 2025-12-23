@@ -45,7 +45,7 @@ public class BoomBarrel : IPushable
         // translate
         if (Vector2.Distance(new Vector2(transform.position.x,transform.position.z), new Vector2(targetPos.x,targetPos.z)) >= 0.15f)
         {
-            this.transform.Translate(-(targetPos - prePos).normalized * Time.deltaTime * 10);
+            this.transform.Translate((targetPos - prePos).normalized * Time.deltaTime * 10);
             if(Vector2.Distance(new Vector2(transform.position.x, transform.position.z), new Vector2(targetPos.x, targetPos.z)) < 0.15f
                 || Vector3.Dot((prePos - targetPos).normalized, (transform.position - targetPos).normalized) < 0)
             {
