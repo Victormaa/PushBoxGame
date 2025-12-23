@@ -27,11 +27,12 @@ public class PlayerController : MonoBehaviour
 
     private IPushable curPushing;
 
-    private Vector3 targetPos;
+    private Coroutine pushingCoroutine;
 
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        
     }
     void Update()
     {
@@ -53,6 +54,7 @@ public class PlayerController : MonoBehaviour
         upPressed = false;
         downPressed = false;
         curPushing = null;
+        
     }
     void HandleInput()
     {
@@ -158,42 +160,34 @@ public class PlayerController : MonoBehaviour
         if (Physics.OverlapBox(targetPosition, Vector3.one * 0.45f, Quaternion.identity, wallLayer).Length > 0)
         {
             ClearInputState(); // 清除输入
+
+            Debug.Log("wallDetectClear");
             return; // 有墙壁，不移动
         }
 
         // 检查并推动箱子
         Collider[] collidersAtTarget = Physics.OverlapBox(targetPosition, Vector3.one * 0.45f);
-        foreach (Collider collider in collidersAtTarget)
+        if(collidersAtTarget.Length > 0)
         {
-            IPushable pushable = collider.GetComponent<IPushable>();
-            
-            if (pushable != null)
+            foreach (Collider collider in collidersAtTarget)
             {
-                curPushing = pushable;
-                Debug.Log("push:" + Time.time.ToString("f2"));
-                bool didPush = curPushing.Push(new Vector3(hMovement, 0, vMovement));
-                if (!didPush)
+                IPushable pushable = collider.GetComponent<IPushable>();
+
+                if (pushable != null && curPushing == null)
                 {
-                    ClearInputState(); // 清除输入
-                    return; // 箱子推不动，玩家也不移动
+                    curPushing = pushable;
+                    //bool didPush = curPushing.Push(new Vector3(hMovement, 0, vMovement));
+                    pushingCoroutine = StartCoroutine(HanlePushAndMove(new Vector3(hMovement, 0, vMovement)));
                 }
             }
-        }
-
-        // 应用移动
-        if(curPushing != null)
-        {
-            if (!curPushing.isPushing)
-                transform.position = targetPosition;
         }
         else
         {
             transform.position = targetPosition;
+            ClearInputState(); // 清除输入
+            Debug.Log("NormalMoveClear");
         }
-         
-
-        // 关键：移动后立即清除所有输入状态
-        ClearInputState();
+        
     }
     public void Convey(FacingDirection dir)
     {
@@ -217,6 +211,36 @@ public class PlayerController : MonoBehaviour
     {
         conveyed = state;
         conveyerDir = direction;
+    }
+
+    private IEnumerator HanlePushAndMove(Vector3 delta)
+    {
+        Vector3 targetPosition = transform.position + delta;
+        if (targetPosition != transform.position)
+        {
+            bool didPush = curPushing.Push(delta);
+            yield return new WaitWhile(() => curPushing.isPushing);
+            if (!didPush)
+            {
+                ClearInputState(); // 清除输入
+                Debug.Log("NothingPushClear");
+                yield return null;
+            }
+            else
+            {
+                transform.position = targetPosition;
+                ClearInputState();
+                Debug.Log("PushClear");
+                yield return null;
+            }
+        }
+        else
+        {
+            ClearInputState();
+            yield return null;
+        }
+        
+        
     }
 }
 public static class Global
