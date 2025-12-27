@@ -173,12 +173,21 @@ public class PlayerController : MonoBehaviour
             {
                 IPushable pushable = collider.GetComponent<IPushable>();
 
+                if(collider.gameObject.layer == LayerMask.NameToLayer("Conveyor"))
+                {
+                    Debug.Log("Here");
+                    transform.position = targetPosition;
+                    ClearInputState(); // «Â≥˝ ‰»Î
+                }
+
                 if (pushable != null && curPushing == null)
                 {
                     curPushing = pushable;
                     //bool didPush = curPushing.Push(new Vector3(hMovement, 0, vMovement));
                     pushingCoroutine = StartCoroutine(HanlePushAndMove(new Vector3(hMovement, 0, vMovement)));
                 }
+
+                
             }
         }
         else
