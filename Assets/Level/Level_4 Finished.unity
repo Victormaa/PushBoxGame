@@ -2526,8 +2526,6 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -2549,7 +2547,6 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
@@ -11947,7 +11944,7 @@ MonoBehaviour:
   m_StreamingVersion: 20241001
   m_LegacyPriority: 0
   Target:
-    TrackingTarget: {fileID: 710548392}
+    TrackingTarget: {fileID: 1035100106}
     LookAtTarget: {fileID: 0}
     CustomLookAtTarget: 0
   Lens:
@@ -11979,7 +11976,7 @@ Transform:
   m_GameObject: {fileID: 268379959}
   serializedVersion: 2
   m_LocalRotation: {x: 0.3980292, y: 0.12785235, z: -0.056126453, w: 0.9066843}
-  m_LocalPosition: {x: 12.844055, y: 3.5256653, z: -43.960587}
+  m_LocalPosition: {x: 53.649048, y: 15.348663, z: -3.1505737}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -21644,8 +21641,6 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -21667,7 +21662,6 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
@@ -27181,6 +27175,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1602481975052718924, guid: 646cf81af973f0647b302702d8983dd5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2143963233178082986, guid: 646cf81af973f0647b302702d8983dd5, type: 3}
       propertyPath: m_LocalPosition.x
       value: 765.902
@@ -33575,11 +33573,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4789717451023182, guid: 9aa8f1b1cb27f8e44b35077eeedda437, type: 3}
   m_PrefabInstance: {fileID: 709888876}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &710548392 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2143963233178082986, guid: 646cf81af973f0647b302702d8983dd5, type: 3}
-  m_PrefabInstance: {fileID: 561456700}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &711536111 stripped
 Transform:
@@ -47443,6 +47436,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6883323c03b6ba848b47a1a7d7fcefe0, type: 3}
+--- !u!4 &1035100106 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5901792854317660599, guid: bc95503b693f82848842a664378aafc2, type: 3}
+  m_PrefabInstance: {fileID: 1602156241}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1035535957
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -62011,23 +62009,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.RenderPipelines.Universal.Runtime::UnityEngine.Rendering.Universal.UniversalAdditionalLightData
+  m_Version: 4
   m_UsePipelineSettings: 1
   m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_RenderingLayers: 1
   m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_ShadowRenderingLayers: 1
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 0
-  m_RenderingLayersMask:
-    serializedVersion: 0
-    m_Bits: 1
-  m_ShadowRenderingLayersMask:
-    serializedVersion: 0
-    m_Bits: 1
-  m_Version: 4
-  m_LightLayerMask: 1
-  m_ShadowLayerMask: 1
-  m_RenderingLayers: 1
-  m_ShadowRenderingLayers: 1
 --- !u!1001 &1377126246
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -72088,6 +72080,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spook (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2119915007741454717, guid: bc95503b693f82848842a664378aafc2, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5901792854317660599, guid: bc95503b693f82848842a664378aafc2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 806.707
@@ -72126,6 +72122,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5901792854317660599, guid: bc95503b693f82848842a664378aafc2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6514688832423620704, guid: bc95503b693f82848842a664378aafc2, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -74718,15 +74718,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 199323885515522167, guid: 0ec0e1c1736bb074d93e80b133841f25, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 12.844055
+      value: 53.649048
       objectReference: {fileID: 0}
     - target: {fileID: 199323885515522167, guid: 0ec0e1c1736bb074d93e80b133841f25, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.5256653
+      value: 15.348663
       objectReference: {fileID: 0}
     - target: {fileID: 199323885515522167, guid: 0ec0e1c1736bb074d93e80b133841f25, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -43.960587
+      value: -3.1505737
       objectReference: {fileID: 0}
     - target: {fileID: 199323885515522167, guid: 0ec0e1c1736bb074d93e80b133841f25, type: 3}
       propertyPath: m_LocalRotation.w
@@ -92921,8 +92921,6 @@ MeshRenderer:
   m_RayTracingAccelStructBuildFlagsOverride: 0
   m_RayTracingAccelStructBuildFlags: 1
   m_SmallMeshCulling: 1
-  m_ForceMeshLod: -1
-  m_MeshLodSelectionBias: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -92944,7 +92942,6 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
