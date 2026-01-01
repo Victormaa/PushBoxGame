@@ -225,7 +225,7 @@ public class PlayerController : MonoBehaviour
     private IEnumerator HanlePushAndMove(Vector3 delta)
     {
         Vector3 targetPosition = transform.position + delta;
-        if (targetPosition != transform.position)
+        if (targetPosition != transform.position && curPushing != null)
         {
             bool didPush = curPushing.Push(delta);
             yield return new WaitWhile(() => curPushing.isPushing);
